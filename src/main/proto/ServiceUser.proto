@@ -1,0 +1,25 @@
+syntax = "proto3";
+package ru.adm123.gRPC;
+
+message RequestAllUsers {
+}
+
+message RequestUserById {
+  int32 id = 1;
+}
+
+message RequestUserByName {
+  string name = 1;
+}
+
+message ResponseUser {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+service ServiceUser {
+  rpc getUserById(RequestUserById) returns (ResponseUser);
+  rpc getUsersByName(RequestUserByName) returns (stream ResponseUser);
+  rpc getAllUsers(RequestAllUsers) returns (stream ResponseUser);
+}
